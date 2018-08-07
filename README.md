@@ -53,3 +53,9 @@ private void onVRChange(WebVRState state)
   **そのままOnStartVRが呼ばれているはず、おかしい**
 
   - またコンソールの中身を出力と、vrActiveの状態を出力してみる.
+
+    - 1度目は「StartedVR」
+
+    - 1回Escapeして2度目は「Entered VR mode」
+
+  - おかしい、**OnStartVRは呼ばれている**
