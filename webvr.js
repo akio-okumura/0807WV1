@@ -83,7 +83,8 @@
             submittingFrames = true;
             onResize();
             // gameInstance.SendMessage('DebugObj', 'ConsoleMessage', "access by onUnity function" );
-            gameInstance.SendMessage('WebVRCameraSet', 'OnStartVR');
+            // gameInstance.SendMessage('WebVRCameraSet', 'OnStartVR');
+            gameInstance.SendMessage('WebVRCameraSet', 'test_func');
             gameInstance.SendMessage('DebugObj', 'ConsoleMessage', "StartedVR" );
           }
         }
