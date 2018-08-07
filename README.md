@@ -10,7 +10,7 @@
 
 1. WebVRCamera.cs のvrAcitiveが**常にFalse**になっている。
 
-2. vrActiveは onVRChangeメソッドで変更している。
+1. vrActiveは onVRChangeメソッドで変更している。
 
 ```
 private void onVRChange(WebVRState state)
@@ -19,11 +19,11 @@ private void onVRChange(WebVRState state)
 }
 ```
 
-  2.1 これはWebVRManagerのOnVRChangeデリゲートに含まれている。
+  1. これはWebVRManagerのOnVRChangeデリゲートに含まれている。
 
-  2.2 `state == WebVRState.ENABLED`は、**!stateを返す関数**
+  1. `state == WebVRState.ENABLED`は、**!stateを返す関数**
 
-  2.3 つまりは、`onVRChange(ENABLED)`で`vrActive = true`となり、ステレオカメラ化出来る。
+  1. つまりは、`onVRChange(ENABLED)`で`vrActive = true`となり、ステレオカメラ化出来る。
 
 3. OnVRChangeが呼ばれるのは、WebVRManager.cs(以後、WVM)の**setVrState**
 
