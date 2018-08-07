@@ -67,3 +67,5 @@ private void onVRChange(WebVRState state)
 - 二度目以降VRモードに入る時は、**onRequestPresent()**
 
 - 87行目、`gameInstance.SendMessage('WebVRCameraSet', 'OnStartVR');`が上手く行っていない気がする。
+
+- 8/7,23:00コミットwebvr.jsから、SendMessageをしっかり出来るか
