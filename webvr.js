@@ -83,6 +83,7 @@
             submittingFrames = true;
             onResize();
             // gameInstance.SendMessage('DebugObj', 'ConsoleMessage', "access by onUnity function" );
+            // ここのOnStartVRが呼び出されていない.
             gameInstance.SendMessage('WebVRCameraSet', 'OnStartVR');
             gameInstance.SendMessage('DebugObj', 'ConsoleMessage', "StartedVR" );
           }

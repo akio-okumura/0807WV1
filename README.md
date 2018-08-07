@@ -62,4 +62,8 @@ private void onVRChange(WebVRState state)
 
 # webvr.js 挙動まとめ
 
-- 初めてVR空間に入る時には
+- 初めてVRモードに入る時は、**onUnity()**
+
+- 二度目以降VRモードに入る時は、**onRequestPresent()**
+
+- 87行目、`gameInstance.SendMessage('WebVRCameraSet', 'OnStartVR');`が上手く行っていない気がする。
