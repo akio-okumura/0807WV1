@@ -59,3 +59,7 @@ private void onVRChange(WebVRState state)
     - 1回Escapeして2度目は「Entered VR mode」
 
   - おかしい、**OnStartVRは呼ばれている**
+
+# webvr.js 挙動まとめ
+
+- 初めてVR空間に入る時には
