@@ -8,37 +8,48 @@
 
 私は、原因を、**OculusGoがVRデバイスと認識されている時とされていない時がある**可能性を見出した。
 
-1. WebVRCamera.cs のvrAcitiveが**常にFalse**になっている。
 
-1. vrActiveは onVRChangeメソッドで変更している。
+- WebVRCamera.cs のvrAcitiveが**常にFalse**になっている。
+
+- vrActiveは onVRChangeメソッドで変更している。
 
 ```
+
 private void onVRChange(WebVRState state)
 {
     vrActive = state == WebVRState.ENABLED;
 }
+
 ```
 
-  1. これはWebVRManagerのOnVRChangeデリゲートに含まれている。
+- これはWebVRManagerのOnVRChangeデリゲートに含まれている。
 
-  1. `state == WebVRState.ENABLED`は、**!stateを返す関数**
+- `state == WebVRState.ENABLED`は、**!stateを返す関数**
 
-  1. つまりは、`onVRChange(ENABLED)`で`vrActive = true`となり、ステレオカメラ化出来る。
+- つまりは、`onVRChange(ENABLED)`で`vrActive = true`となり、ステレオカメラ化出来る。
 
-3. OnVRChangeが呼ばれるのは、WebVRManager.cs(以後、WVM)の**setVrState**
+- OnVRChangeが呼ばれるのは、WebVRManager.cs(以後、WVM)の**setVrState**
 
-  3.1 setVrState(WebVRState.ENABLED)であればvrActiveがtrue.VR化出来る。
+  - setVrState(WebVRState.ENABLED)であればvrActiveがtrue.VR化出来る。
 
-  3.2 setVrStateが呼ばれるのは、toggleVrStateとOnStartVRとOnEndVR。
+  - setVrStateが呼ばれるのは、toggleVrStateとOnStartVRとOnEndVR。
 
   今回toggleVrStateは無視する。`setVrState(WebVRState.ENABLED)`になるのは、
 
   OnStartVRなので、次はOnStartVRを追う。
 
-4. OnStartVR
+- OnStartVR
 
-  4.1 OnStartVRを呼んでいるのは、`webvr.js`の**OnRequestPresent**,**onUnity**
+  - OnStartVRを呼んでいるのは、`webvr.js`の**OnRequestPresent**,**onUnity**
 
-  4.2 webvr.jsに変更を加えた。`SendMessageでDebugOnjにtextを出力させる`
+  - webvr.jsに変更を加えた。`SendMessageでDebugOnjにtextを出力させる`
 
   (webvj.jsはテンプレートに組まれているので一旦別場所に保存してからビルド)
+
+  - access by onUnity function と出たので、onUnity関数のしかも
+
+  `gameInstance.SendMessage('WebVRCameraSet', 'OnStartVR')`の手前まで届いている。
+
+  **そのままOnStartVRが呼ばれているはず、おかしい**
+
+  - またコンソールの中身を出力と、vrActiveの状態を出力してみる.
