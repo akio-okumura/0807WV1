@@ -408,10 +408,6 @@
     }
   }
 
-  function btn1Click(){
-    gameInstance.SendMessage('WebVRCameraSet', 'test_func');
-  }
-
   // Monkeypatch `rAF` so that we can render at the VR display's framerate.
   window.requestAnimationFrame = onRequestAnimationFrame;
 
