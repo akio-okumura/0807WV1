@@ -84,7 +84,7 @@
             onResize();
             // gameInstance.SendMessage('DebugObj', 'ConsoleMessage', "access by onUnity function" );
             gameInstance.SendMessage('WebVRCameraSet', 'OnStartVR');
-            gameInstance.SendMessage('WebVRCameraSet', 'test_func');
+            // gameInstance.SendMessage('WebVRCameraSet', 'test_func');
             gameInstance.SendMessage('DebugObj', 'ConsoleMessage', "StartedVR" );
           }
         }
@@ -126,7 +126,7 @@
       return vrDisplay.requestPresent([{source: canvas}]).then(function () {
         // Start stereo rendering in Unity.
         console.log('Entered VR mode');
-        gameInstance.SendMessage('DebugObj', 'ConsoleMessage', "Entered VR mode" );
+        // gameInstance.SendMessage('DebugObj', 'ConsoleMessage', "Entered VR mode" );
         gameInstance.SendMessage('WebVRCameraSet', 'OnStartVR');
       }).catch(function (err) {
         console.error('Unable to enter VR mode:', err);
@@ -136,11 +136,13 @@
 
   function onExitPresent () {
     if (!vrDisplay && !vrDisplay.isPresenting) {
+      gameInstance.SendMessage('DebugObj', 'ConsoleMessage', "No VR display to exit VR mode" );
       console.warn('No VR display to exit VR mode');
       return;
     }
     function done () {
       // End stereo rendering in Unity.
+      gameInstance.SendMessage('DebugObj', 'ConsoleMessage', "Exit VR mode" );
       gameInstance.SendMessage('WebVRCameraSet', 'OnEndVR');
       onResize();
     }
