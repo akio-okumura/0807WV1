@@ -41,6 +41,8 @@ public void Transmit_OnStartVR() {
 
 **というかSendMessageでWebVRCameraSetに直接触れれば何の問題も無い。ただそれが原因不明。**
 
+[WebGL: Interacting with browser scripting](https://docs.unity3d.com/Manual/webgl-interactingwithbrowserscripting.html)
+
 
 # 実験経緯
 
