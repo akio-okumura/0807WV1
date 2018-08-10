@@ -1,4 +1,38 @@
 # 8/7,Mozilla WebVRアセットの実験用レポジトリ
+## 結論
+
+**webvr.js**から**WebVRCameraSet**へのSendMessageが出来ていないことで、
+
+VR化を制御するboolまで変更が届いていなかった。
+
+なので、Unityシーン内にwebvr.jsとWebVRCameraSetを橋渡しするオブジェクトを配置。
+
+一旦そのオブジェクトをwebvr.jsで呼び出し、そこからWebVRCameraSetの関数に触るようにした。
+
+具体的には、webvr.js内の`gameInstance.SendMessage('WebVRCameraSet', 'OnStartVR');`
+
+呼び出しを、`gameInstance.SendMessage('transmit', 'Transmit_OnStartVR');`
+
+と変更し、**transmit**オブジェクト内に**OnStartVR**を呼び出す関数、
+
+```
+public void Transmit_OnStartVR() {
+  OnStartVR();
+}
+```
+
+を定義する。これで橋渡しが完成する。
+
+## この解決法の問題点
+
+本来であれば橋渡しをせず直接WebVRCameraSetに触るのでHMDのポジショントラッキングにラグが殆ど生まれない。
+
+が今回はブリッジした為映像にカクつきが出てしまっている。
+
+この問題は一旦スルーでいいかと考えている。
+
+
+# 実験経緯
 
 アセットをそのまま入れて、Buildしたら**VR化出来なかった**
 
