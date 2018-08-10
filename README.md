@@ -31,11 +31,11 @@ public void Transmit_OnStartVR() {
 
 この問題は一旦スルーでいいかと考えている。
 
-(webvr.js)[https://gist.github.com/akio-okumura/092bad105d79d75f50b70fcdb97bc408]
+[webvr.js](https://gist.github.com/akio-okumura/092bad105d79d75f50b70fcdb97bc408)
 
 今回改変したwebvr.jsをWebVRTemplate内に毎度入れてあげる必要がある。
 
-(Transmition.cs)[https://gist.github.com/akio-okumura/586c5c2f404df4f2e5f06788eb5743b3]
+[Transmition.cs](https://gist.github.com/akio-okumura/586c5c2f404df4f2e5f06788eb5743b3)
 
 これをtransmitオブジェクトにアタッチする。
 

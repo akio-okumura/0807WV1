@@ -82,10 +82,7 @@
           if (!submittingFrames && unityLoaded) {
             submittingFrames = true;
             onResize();
-            // gameInstance.SendMessage('DebugObj', 'ConsoleMessage', "access by onUnity function" );
             // gameInstance.SendMessage('WebVRCameraSet', 'OnStartVR');
-            // gameInstance.SendMessage('WebVRCameraSet', 'test_func');
-            gameInstance.SendMessage('DebugObj', 'ConsoleMessage', "StartedVR" );
             gameInstance.SendMessage('transmit', 'Transmit_OnStartVR');
           }
         }
@@ -117,17 +114,14 @@
   function onRequestPresent() {
     return new Promise(function (resolve, reject) {
       if (!vrDisplay) {
-        gameInstance.SendMessage('DebugObj', 'ConsoleMessage', "No VR display available to enter VR mode" );
         return reject(new Error('No VR display available to enter VR mode'));
       }
       if (!vrDisplay.capabilities || !vrDisplay.capabilities.canPresent) {
-        gameInstance.SendMessage('DebugObj', 'ConsoleMessage', "VR display is not capable of presenting" );
         return reject(new Error('VR display is not capable of presenting'));
       }
       return vrDisplay.requestPresent([{source: canvas}]).then(function () {
         // Start stereo rendering in Unity.
         console.log('Entered VR mode');
-        // gameInstance.SendMessage('DebugObj', 'ConsoleMessage', "Entered VR mode" );
         // gameInstance.SendMessage('WebVRCameraSet', 'OnStartVR');
         // OnStartVRを媒介する
         gameInstance.SendMessage('transmit', 'Transmit_OnStartVR');
@@ -139,13 +133,11 @@
 
   function onExitPresent () {
     if (!vrDisplay && !vrDisplay.isPresenting) {
-      gameInstance.SendMessage('DebugObj', 'ConsoleMessage', "No VR display to exit VR mode" );
       console.warn('No VR display to exit VR mode');
       return;
     }
     function done () {
       // End stereo rendering in Unity.
-      // gameInstance.SendMessage('DebugObj', 'ConsoleMessage', "Exit VR mode" );
       // gameInstance.SendMessage('WebVRCameraSet', 'OnEndVR');
       gameInstance.SendMessage('transmit', 'Transmit_OnEndVR');
       onResize();
